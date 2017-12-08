@@ -6,12 +6,12 @@ import java.util.ArrayList;
 public class Hotel {
 
     private String hotelName;
-    private ArrayList<Room> rooms;
+    private ArrayList<Bedroom> bedrooms;
     private Double moneyMade;
 
     public Hotel(String hotelName) {
         this.hotelName = hotelName;
-        this.rooms = new ArrayList<Room>();
+        this.bedrooms = new ArrayList<Bedroom>();
         this.moneyMade = 0.0;
     }
 
@@ -20,19 +20,19 @@ public class Hotel {
     }
 
     public int getNumberofRooms() {
-        return rooms.size();
+        return bedrooms.size();
     }
 
     public Double getMoneyMade() {
         return moneyMade;
     }
 
-    public void addRoom(Room room) {
-        this.rooms.add(room);
+    public void addBedRoom(Bedroom bedroom) {
+        this.bedrooms.add(bedroom);
     }
 
-    public void removeRoom(Room room) {
-        this.rooms.remove(room);
+    public void removeBedRoom(Bedroom bedroom) {
+        this.bedrooms.remove(bedroom);
     }
 
     public void checkIn(Bedroom bedroom, Group group) {
@@ -56,4 +56,18 @@ public class Hotel {
 
         }
     }
+
+    public int totalNumberOfGuests() {
+        int guests = 0;
+        for (Bedroom bedroom : bedrooms){
+            guests += bedroom.numberOfGuestsInRoom();
+        }
+        return guests;
+    }
+
+//    public String allGuestNames() {
+//        for (Room room : rooms) {
+//            String guestsInRomm = String.format("Room %s is currently occupied by %s", room.getRoomNumber)
+//        }
+//    }
 }
