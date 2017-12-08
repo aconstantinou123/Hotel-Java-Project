@@ -17,4 +17,9 @@ public class RoomTest {
     public void canGetCapacity(){
         assertEquals(2,room1.getCapacity());
     }
+
+    @Test
+    public void canGetGuestsNumber(){
+        assertEquals(0, room1.numberOfGuestsInRoom());
+    }
 }

@@ -17,4 +17,9 @@ public class Room {
     public int getCapacity() {
         return capacity;
     }
+
+
+    public int numberOfGuestsInRoom() {
+        return this.guestsInRoom.size();
+    }
 }
