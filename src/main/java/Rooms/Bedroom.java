@@ -1,17 +1,20 @@
 package Rooms;
 
 import Guest.Group;
+import Guest.Guest;
 
 public class Bedroom extends Room {
 
     protected RoomType roomType;
     protected Double pricePerNight;
+    protected int roomNumber;
     protected boolean isOccupied;
 
-    public Bedroom(RoomType roomtype, Double pricePerNight, int capacity) {
+    public Bedroom(RoomType roomtype, Double pricePerNight, int roomNumber, int capacity) {
         super(capacity);
         this.roomType = roomtype;
         this.pricePerNight = pricePerNight;
+        this.roomNumber = roomNumber;
         this.isOccupied = false;
 
     }
@@ -47,5 +50,15 @@ public class Bedroom extends Room {
 
     public void removeGuests() {
         this.getGuestsInRoom().clear();
+    }
+
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void checkOutGuests() {
+        for(Guest guest : guestsInRoom){
+            guest.setCheckedInStatus(false);
+        }
     }
 }

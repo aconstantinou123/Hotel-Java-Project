@@ -43,6 +43,17 @@ public class Hotel {
                     group.deductMoney(bedroom);
                     bedroom.setIsOccupied(true);
                     group.checkInAllGuests();
+                    moneyMade += bedroom.getPrice();
+                    group.removeAll();
+        }
+    }
+
+    public void checkOut(Bedroom bedroom, Group group) {
+        if (bedroom.getIsOccupied() == true){
+            bedroom.checkOutGuests();
+            bedroom.removeGuests();
+            bedroom.setIsOccupied(false);
+
         }
     }
 }

@@ -16,7 +16,7 @@ public class BedroomTest {
 
     @Before
     public void before() {
-        bedroom1 = new Bedroom(RoomType.SINGLE, 80.0, 2);
+        bedroom1 = new Bedroom(RoomType.SINGLE, 80.0, 101, 2);
         guest1 = new Guest("Lacey", 300.0);
         guest2 = new Guest("Alex", 20.0);
         group1 = new Group();
@@ -53,6 +53,11 @@ public class BedroomTest {
     public void canSetIsOccupied() {
         bedroom1.setIsOccupied(true);
         assertEquals(true, bedroom1.getIsOccupied());
+    }
+
+    @Test
+    public void canGetRoomNumber(){
+        assertEquals(101, bedroom1.getRoomNumber());
     }
 
     @Test

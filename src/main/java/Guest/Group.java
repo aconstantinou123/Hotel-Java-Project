@@ -69,5 +69,6 @@ public class Group {
             guest.setCheckedInStatus(true);
         }
     }
+
 }
 

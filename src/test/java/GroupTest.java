@@ -22,7 +22,7 @@ public class GroupTest {
         guest1 = new Guest("Alex", 200.0);
         guest2 = new Guest("Tim", 150.0);
         guest3 = new Guest("Bill", 20.0);
-        bedroom1 = new Bedroom(RoomType.PENTHOUSE, 100.0, 2);
+        bedroom1 = new Bedroom(RoomType.PENTHOUSE, 100.0, 101, 2);
     }
 
     @Test
