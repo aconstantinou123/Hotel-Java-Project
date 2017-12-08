@@ -28,4 +28,12 @@ public class Guest {
     public void setWallet(double wallet) {
         this.wallet = wallet;
     }
+
+    public boolean getCheckedInStatus() {
+        return checkedIn;
+    }
+
+    public void setCheckedInStatus() {
+        this.checkedIn = true;
+    }
 }

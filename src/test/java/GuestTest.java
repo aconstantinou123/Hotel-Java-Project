@@ -33,6 +33,19 @@ public class GuestTest {
     public void canSetWallet() {
         guest1.setWallet(300.0);
         assertEquals(300.0, guest1.getWallet(), 0.1);
-        }
+    }
+
+    @Test
+    public void canGetCheckedInStatus() {
+        assertEquals(false, guest1.getCheckedInStatus());
+    }
+
+    @Test
+    public void canSetCheckedInStatus() {
+        guest1.setCheckedInStatus();
+        assertEquals(true, guest1.getCheckedInStatus());
+
+    }
+
 
 }
