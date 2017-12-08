@@ -73,22 +73,22 @@ public class GroupTest {
         group1.addGuest(guest1);
         group1.addGuest(guest2);
         group1.addGuest(guest3);
-        assertEquals(true, group1.enoughMoneyForRoom(bedroom1));
+        assertEquals(true, group1.enoughMoneyForRoom(bedroom1, 2));
     }
 
     @Test
     public void canCheckGuestMoneyVsRoomPrice_False(){
         group1.addGuest(guest3);
-        assertEquals(false, group1.enoughMoneyForRoom(bedroom1));
+        assertEquals(false, group1.enoughMoneyForRoom(bedroom1, 2));
     }
 
     @Test
     public void canDeductMoney(){
         group1.addGuest(guest1);
         group1.addGuest(guest2);
-        group1.deductMoney(bedroom1);
-        assertEquals(150.0, guest1.getWallet(), 0.1);
-        assertEquals(100.0, guest2.getWallet(), 0.1);
+        group1.deductMoney(bedroom1, 2);
+        assertEquals(100.0, guest1.getWallet(), 0.1);
+        assertEquals(50.0, guest2.getWallet(), 0.1);
     }
 
     @Test

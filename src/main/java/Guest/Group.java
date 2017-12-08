@@ -45,18 +45,18 @@ public class Group {
             return money;
     }
 
-    public boolean enoughMoneyForRoom(Bedroom bedroom) {
+    public boolean enoughMoneyForRoom(Bedroom bedroom, int numberOfNights) {
         boolean result = false;
         Double totalMoney = totalGuestMoney();
-        if (totalMoney >= bedroom.getPrice()){
+        if (totalMoney >= (bedroom.getPrice() * numberOfNights)){
             result = true;
         }
         return result;
     }
 
-    public void deductMoney(Bedroom bedroom) {
+    public void deductMoney(Bedroom bedroom, int numberOfNights) {
         int numberOfGuests = guests.size();
-        Double pricePerPerson = bedroom.getPrice() / numberOfGuests;
+        Double pricePerPerson = (bedroom.getPrice() * numberOfNights) / numberOfGuests;
             for (Guest guest : guests) {
                 Double wallet = guest.getWallet();
                 wallet -= pricePerPerson;

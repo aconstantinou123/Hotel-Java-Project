@@ -37,15 +37,15 @@ public class Hotel {
         this.bedrooms.remove(bedroom);
     }
 
-    public void checkIn(Bedroom bedroom, Group group) {
-        if (group.enoughMoneyForRoom(bedroom) == true &&
+    public void checkIn(Bedroom bedroom, Group group, int numberOfNights) {
+        if (group.enoughMoneyForRoom(bedroom, numberOfNights) == true &&
                 group.checkCapacity(bedroom) == true &&
                  bedroom.getIsOccupied() == false) {
                     bedroom.addGroup(group);
-                    group.deductMoney(bedroom);
+                    group.deductMoney(bedroom, numberOfNights);
                     bedroom.setIsOccupied(true);
                     group.checkInAllGuests();
-                    moneyMade += bedroom.getPrice();
+                    moneyMade += (bedroom.getPrice() * numberOfNights);
                     group.removeAll();
         }
     }

@@ -87,11 +87,11 @@ public class HotelTest {
     public void canCheckInGuests() {
         group1.addGuest(guest1);
         group1.addGuest(guest2);
-        hotel1.checkIn(bedroom1, group1);
+        hotel1.checkIn(bedroom1, group1, 2);
         assertEquals(2, bedroom1.numberOfGuestsInRoom());
-        assertEquals(260.0, guest1.getWallet(), 0.1);
+        assertEquals(220.0, guest1.getWallet(), 0.1);
         assertEquals(true, bedroom1.getIsOccupied());
-        assertEquals(80.0, hotel1.getMoneyMade(), 0.1);
+        assertEquals(160.0, hotel1.getMoneyMade(), 0.1);
         assertEquals(0, group1.getGuestsNumber());
 
     }
@@ -100,7 +100,7 @@ public class HotelTest {
     public void canCheckOutGuests() {
         group1.addGuest(guest1);
         group1.addGuest(guest2);
-        hotel1.checkIn(bedroom1, group1);
+        hotel1.checkIn(bedroom1, group1, 2);
         hotel1.checkOut(bedroom1, group1);
         assertEquals(0, bedroom1.numberOfGuestsInRoom());
         assertEquals(false, bedroom1.getIsOccupied());
@@ -110,17 +110,17 @@ public class HotelTest {
 
     @Test
     public void canSeeTotalNumberOfGuests() {
-        hotel2.checkIn(bedroom1, group2);
-        hotel2.checkIn(bedroom2, group3);
-        hotel2.checkIn(bedroom3, group4);
+        hotel2.checkIn(bedroom1, group2, 1);
+        hotel2.checkIn(bedroom2, group3, 1);
+        hotel2.checkIn(bedroom3, group4, 1);
         assertEquals(6, hotel2.totalNumberOfGuests());
     }
 
     @Test
     public void canAllInfo() {
-        hotel2.checkIn(bedroom1, group2);
-        hotel2.checkIn(bedroom2, group3);
-        hotel2.checkIn(bedroom3, group4);
+        hotel2.checkIn(bedroom1, group2, 1);
+        hotel2.checkIn(bedroom2, group3,1);
+        hotel2.checkIn(bedroom3, group4,1);
         System.out.println(hotel2.allRoomInfo());
         assertEquals("Room 101 is currently occupied by 2 people - Lacey and Alex\n" +
                 "Room 102 is currently occupied by 2 people - Bill and Steve\n" +
@@ -129,8 +129,8 @@ public class HotelTest {
 
     @Test
     public void canAllInfo_Unoccupied() {
-        hotel2.checkIn(bedroom1, group2);
-        hotel2.checkIn(bedroom3, group4);
+        hotel2.checkIn(bedroom1, group2,1);
+        hotel2.checkIn(bedroom3, group4,1);
         assertEquals("Room 101 is currently occupied by 2 people - Lacey and Alex\n" +
                 "Room 102 is currently unoccupied\n" +
                 "Room 103 is currently occupied by 2 people - Jenny and Sarah\n", hotel2.allRoomInfo());
@@ -138,8 +138,8 @@ public class HotelTest {
 
     @Test
     public void canSeeUnoccupiedRooms(){
-        hotel2.checkIn(bedroom1, group2);
-        hotel2.checkIn(bedroom3, group4);
+        hotel2.checkIn(bedroom1, group2, 1);
+        hotel2.checkIn(bedroom3, group4,1);
         assertEquals("Room 102 - Double\n", hotel2.unoccupiedRooms());
     }
 }
