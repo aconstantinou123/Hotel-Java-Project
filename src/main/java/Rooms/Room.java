@@ -22,6 +22,16 @@ public class Room {
         return guestsInRoom;
     }
 
+    public String getGuestNames() {
+        ArrayList<String> guestNames = new ArrayList<>();
+        for(Guest guest : guestsInRoom){
+            guestNames.add(guest.getName());
+        }
+        String result = String.join(" and ", guestNames);
+        return result;
+    }
+
+
 
     public int numberOfGuestsInRoom() {
         return this.guestsInRoom.size();

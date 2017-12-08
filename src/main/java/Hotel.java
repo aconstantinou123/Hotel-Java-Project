@@ -7,11 +7,13 @@ public class Hotel {
 
     private String hotelName;
     private ArrayList<Bedroom> bedrooms;
+    private ArrayList<Room> otherRooms;
     private Double moneyMade;
 
     public Hotel(String hotelName) {
         this.hotelName = hotelName;
         this.bedrooms = new ArrayList<Bedroom>();
+        this.otherRooms = new ArrayList<Room>();
         this.moneyMade = 0.0;
     }
 
@@ -65,9 +67,18 @@ public class Hotel {
         return guests;
     }
 
-//    public String allGuestNames() {
-//        for (Room room : rooms) {
-//            String guestsInRomm = String.format("Room %s is currently occupied by %s", room.getRoomNumber)
-//        }
-//    }
+    public String allRoomInfo() {
+        ArrayList<String> guestNames = new ArrayList<>();
+        for (Bedroom bedroom : bedrooms) {
+            if (bedroom.getIsOccupied() == true) {
+                guestNames.add(String.format("Room %s is currently occupied by %s people - %s"  + "\n", bedroom.getRoomNumber(),
+                       bedroom.numberOfGuestsInRoom(), bedroom.getGuestNames()));
+            }
+            else {guestNames.add(String.format("Room %s is currently unoccupied" + "\n", bedroom.getRoomNumber()));
+
+            }
+        }
+        String result = String.join("", guestNames);
+        return result;
+    }
 }
