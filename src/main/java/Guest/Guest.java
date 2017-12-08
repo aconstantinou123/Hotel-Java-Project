@@ -33,7 +33,7 @@ public class Guest {
         return checkedIn;
     }
 
-    public void setCheckedInStatus() {
-        this.checkedIn = true;
+    public void setCheckedInStatus(boolean status) {
+        this.checkedIn = status;
     }
 }

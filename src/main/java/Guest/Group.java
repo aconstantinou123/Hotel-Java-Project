@@ -13,6 +13,10 @@ public class Group {
 
     }
 
+    public ArrayList<Guest> getGuestsList() {
+        return guests;
+    }
+
     public int getGuestsNumber() {
         return guests.size();
     }
@@ -58,6 +62,12 @@ public class Group {
                 wallet -= pricePerPerson;
                 guest.setWallet(wallet);
             }
+    }
+
+    public void checkInAllGuests() {
+        for(Guest guest : guests){
+            guest.setCheckedInStatus(true);
+        }
     }
 }
 

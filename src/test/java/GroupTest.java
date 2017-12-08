@@ -91,5 +91,14 @@ public class GroupTest {
         assertEquals(100.0, guest2.getWallet(), 0.1);
     }
 
+    @Test
+    public void allGuestsCheckedIn(){
+        group1.addGuest(guest1);
+        group1.addGuest(guest2);
+        group1.checkInAllGuests();
+        assertEquals(true, guest1.getCheckedInStatus());
+        assertEquals(true, guest2.getCheckedInStatus());
+    }
+
 
 }

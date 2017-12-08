@@ -42,7 +42,7 @@ public class GuestTest {
 
     @Test
     public void canSetCheckedInStatus() {
-        guest1.setCheckedInStatus();
+        guest1.setCheckedInStatus(true);
         assertEquals(true, guest1.getCheckedInStatus());
 
     }
