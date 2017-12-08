@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 
 public class HotelTest {
@@ -145,7 +146,6 @@ public class HotelTest {
     public void canAllInfo_Unoccupied() {
         hotel2.checkIn(bedroom1, group2,1);
         hotel2.checkIn(bedroom3, group4,1);
-        System.out.println(hotel2.allRoomInfo());
         assertEquals("Room 101 is currently occupied by 2 people for 1 night(s)\n" +
                 "Guest names: Lacey and Alex\n" +
                 "\n" +
@@ -163,9 +163,9 @@ public class HotelTest {
     public void canSeeUnoccupiedRooms(){
         hotel2.checkIn(bedroom1, group2, 1);
         hotel2.checkIn(bedroom3, group4,1);
-        System.out.println(hotel2.unoccupiedRooms());
         assertEquals("Room 102 - Double\n" +
                 "Room 104 - Single\n" +
                 "Room 105 - Double\n", hotel2.unoccupiedRooms());
     }
+    
 }

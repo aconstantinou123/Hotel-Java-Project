@@ -95,4 +95,18 @@ public class Hotel {
         String result = String.join("", unoccupiedRooms);
         return result;
     }
+
+    public Bedroom findRoom(int roomNumber) {
+        ArrayList<Bedroom> foundRoom = new ArrayList<>();
+        for(Bedroom bedroom : bedrooms) {
+            if(roomNumber == bedroom.getRoomNumber()) {
+                foundRoom.add(bedroom);
+            }
+        }
+        if (foundRoom.isEmpty()) {
+                System.out.println("Room not found!");
+        }
+        return foundRoom.get(0);
+    }
+
 }
