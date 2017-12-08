@@ -14,6 +14,8 @@ public class HotelTest {
     Bedroom bedroom1;
     Bedroom bedroom2;
     Bedroom bedroom3;
+    Bedroom bedroom4;
+    Bedroom bedroom5;
     Group group1;
     Group group2;
     Group group3;
@@ -33,6 +35,8 @@ public class HotelTest {
         bedroom1 = new Bedroom(RoomType.SINGLE, 80.0, 101, 2);
         bedroom2 = new Bedroom(RoomType.DOUBLE, 200.0, 102, 2);
         bedroom3 = new Bedroom(RoomType.PENTHOUSE, 300.0, 103, 4);
+        bedroom4 = new Bedroom(RoomType.SINGLE, 300.0, 104, 2);
+        bedroom5 = new Bedroom(RoomType.DOUBLE, 300.0, 105, 2);
         guest1 = new Guest("Lacey", 300.0);
         guest2 = new Guest("Alex", 120.0);
         guest3 = new Guest("Bill", 220.0);
@@ -47,6 +51,8 @@ public class HotelTest {
         hotel2.addBedRoom(bedroom1);
         hotel2.addBedRoom(bedroom2);
         hotel2.addBedRoom(bedroom3);
+        hotel2.addBedRoom(bedroom4);
+        hotel2.addBedRoom(bedroom5);
         group2.addGuest(guest1);
         group2.addGuest(guest2);
         group3.addGuest(guest3);
@@ -123,10 +129,16 @@ public class HotelTest {
         hotel2.checkIn(bedroom3, group4,1);
         assertEquals("Room 101 is currently occupied by 2 people for 1 night(s)\n" +
                 "Guest names: Lacey and Alex\n" +
+                "\n" +
                 "Room 102 is currently occupied by 2 people for 1 night(s)\n" +
                 "Guest names: Bill and Steve\n" +
+                "\n" +
                 "Room 103 is currently occupied by 2 people for 1 night(s)\n" +
-                "Guest names: Jenny and Sarah\n", hotel2.allRoomInfo());
+                "Guest names: Jenny and Sarah\n" +
+                "\n" +
+                "Room 104 is currently unoccupied\n" +
+                "\n" +
+                "Room 105 is currently unoccupied\n\n", hotel2.allRoomInfo());
     }
 
     @Test
@@ -136,15 +148,24 @@ public class HotelTest {
         System.out.println(hotel2.allRoomInfo());
         assertEquals("Room 101 is currently occupied by 2 people for 1 night(s)\n" +
                 "Guest names: Lacey and Alex\n" +
+                "\n" +
                 "Room 102 is currently unoccupied\n" +
+                "\n" +
                 "Room 103 is currently occupied by 2 people for 1 night(s)\n" +
-                "Guest names: Jenny and Sarah\n", hotel2.allRoomInfo());
+                "Guest names: Jenny and Sarah\n" +
+                "\n" +
+                "Room 104 is currently unoccupied\n" +
+                "\n" +
+                "Room 105 is currently unoccupied\n\n", hotel2.allRoomInfo());
     }
 
     @Test
     public void canSeeUnoccupiedRooms(){
         hotel2.checkIn(bedroom1, group2, 1);
         hotel2.checkIn(bedroom3, group4,1);
-        assertEquals("Room 102 - Double\n", hotel2.unoccupiedRooms());
+        System.out.println(hotel2.unoccupiedRooms());
+        assertEquals("Room 102 - Double\n" +
+                "Room 104 - Single\n" +
+                "Room 105 - Double\n", hotel2.unoccupiedRooms());
     }
 }

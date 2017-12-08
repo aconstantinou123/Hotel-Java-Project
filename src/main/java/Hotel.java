@@ -74,10 +74,10 @@ public class Hotel {
         for (Bedroom bedroom : bedrooms) {
             if (bedroom.getIsOccupied() == true) {
                 guestNames.add(String.format("Room %s is currently occupied by %s people for %s night(s)" + "\n"
-                                + "Guest names: %s"  + "\n", bedroom.getRoomNumber(),
+                                + "Guest names: %s"  + "\n\n", bedroom.getRoomNumber(),
                        bedroom.numberOfGuestsInRoom(), bedroom.getNightsBooked(), bedroom.getGuestNames()));
             }
-            else {guestNames.add(String.format("Room %s is currently unoccupied" + "\n", bedroom.getRoomNumber()));
+            else {guestNames.add(String.format("Room %s is currently unoccupied" + "\n\n", bedroom.getRoomNumber()));
 
             }
         }
