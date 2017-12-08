@@ -81,4 +81,15 @@ public class Hotel {
         String result = String.join("", guestNames);
         return result;
     }
+
+    public String unoccupiedRooms() {
+        ArrayList<String> unoccupiedRooms = new ArrayList<>();
+        for (Bedroom bedroom : bedrooms) {
+           if (bedroom.getIsOccupied() == false){
+               unoccupiedRooms.add(String.format("Room %s - %s" + "\n", bedroom.getRoomNumber(), bedroom.getType()));
+           }
+        }
+        String result = String.join("", unoccupiedRooms);
+        return result;
+    }
 }

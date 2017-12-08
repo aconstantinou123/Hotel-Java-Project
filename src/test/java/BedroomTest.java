@@ -24,13 +24,13 @@ public class BedroomTest {
 
     @Test
     public void canGetType() {
-        assertEquals(RoomType.SINGLE, bedroom1.getType());
+        assertEquals("Single", bedroom1.getType());
     }
 
     @Test
     public void canSetType() {
         bedroom1.setType(RoomType.PENTHOUSE);
-        assertEquals(RoomType.PENTHOUSE, bedroom1.getType());
+        assertEquals("Penthouse", bedroom1.getType());
     }
 
     @Test

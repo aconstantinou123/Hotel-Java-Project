@@ -135,4 +135,11 @@ public class HotelTest {
                 "Room 102 is currently unoccupied\n" +
                 "Room 103 is currently occupied by 2 people - Jenny and Sarah\n", hotel2.allRoomInfo());
     }
+
+    @Test
+    public void canSeeUnoccupiedRooms(){
+        hotel2.checkIn(bedroom1, group2);
+        hotel2.checkIn(bedroom3, group4);
+        assertEquals("Room 102 - Double\n", hotel2.unoccupiedRooms());
+    }
 }

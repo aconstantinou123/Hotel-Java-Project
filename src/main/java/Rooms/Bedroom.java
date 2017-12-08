@@ -19,8 +19,8 @@ public class Bedroom extends Room {
 
     }
 
-    public RoomType getType() {
-        return roomType;
+    public String getType() {
+        return roomType.getType();
     }
 
     public void setType(RoomType type) {
