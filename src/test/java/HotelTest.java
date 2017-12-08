@@ -49,5 +49,7 @@ public class HotelTest {
     }
 
 //    @Test
-//    public void canCheckIn
+//    public void canCheckInGuests() {
+//
+//    }
 }
