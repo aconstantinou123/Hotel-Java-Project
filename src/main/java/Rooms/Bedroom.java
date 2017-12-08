@@ -9,6 +9,7 @@ public class Bedroom extends Room {
     protected Double pricePerNight;
     protected int roomNumber;
     protected boolean isOccupied;
+    protected int nightsBooked;
 
     public Bedroom(RoomType roomtype, Double pricePerNight, int roomNumber, int capacity) {
         super(capacity);
@@ -16,6 +17,7 @@ public class Bedroom extends Room {
         this.pricePerNight = pricePerNight;
         this.roomNumber = roomNumber;
         this.isOccupied = false;
+        this.nightsBooked = 0;
 
     }
 
@@ -44,6 +46,14 @@ public class Bedroom extends Room {
         this.isOccupied = isOccupied;
     }
 
+    public int getNightsBooked() {
+        return nightsBooked;
+    }
+
+    public void setNightsBooked(int numberOfNights) {
+        this.nightsBooked = numberOfNights;
+    }
+
     public void addGroup(Group group){
         this.getGuestsInRoom().addAll(group.getGuestsList());
     }
@@ -61,4 +71,5 @@ public class Bedroom extends Room {
             guest.setCheckedInStatus(false);
         }
     }
+
 }

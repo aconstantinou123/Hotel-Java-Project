@@ -56,6 +56,17 @@ public class BedroomTest {
     }
 
     @Test
+    public void canGetNightsBooked() {
+        assertEquals(0, bedroom1.getNightsBooked());
+    }
+
+    @Test
+    public void canSetNightsBooked() {
+        bedroom1.setNightsBooked(5);
+        assertEquals(5, bedroom1.getNightsBooked());
+    }
+
+    @Test
     public void canGetRoomNumber(){
         assertEquals(101, bedroom1.getRoomNumber());
     }

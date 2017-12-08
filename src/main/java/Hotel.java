@@ -45,6 +45,7 @@ public class Hotel {
                     group.deductMoney(bedroom, numberOfNights);
                     bedroom.setIsOccupied(true);
                     group.checkInAllGuests();
+                    bedroom.setNightsBooked(numberOfNights);
                     moneyMade += (bedroom.getPrice() * numberOfNights);
                     group.removeAll();
         }
@@ -54,6 +55,7 @@ public class Hotel {
         if (bedroom.getIsOccupied() == true){
             bedroom.checkOutGuests();
             bedroom.removeGuests();
+            bedroom.setNightsBooked(0);
             bedroom.setIsOccupied(false);
 
         }
@@ -71,8 +73,9 @@ public class Hotel {
         ArrayList<String> guestNames = new ArrayList<>();
         for (Bedroom bedroom : bedrooms) {
             if (bedroom.getIsOccupied() == true) {
-                guestNames.add(String.format("Room %s is currently occupied by %s people - %s"  + "\n", bedroom.getRoomNumber(),
-                       bedroom.numberOfGuestsInRoom(), bedroom.getGuestNames()));
+                guestNames.add(String.format("Room %s is currently occupied by %s people for %s night(s)" + "\n"
+                                + "Guest names: %s"  + "\n", bedroom.getRoomNumber(),
+                       bedroom.numberOfGuestsInRoom(), bedroom.getNightsBooked(), bedroom.getGuestNames()));
             }
             else {guestNames.add(String.format("Room %s is currently unoccupied" + "\n", bedroom.getRoomNumber()));
 

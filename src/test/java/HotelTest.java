@@ -121,19 +121,24 @@ public class HotelTest {
         hotel2.checkIn(bedroom1, group2, 1);
         hotel2.checkIn(bedroom2, group3,1);
         hotel2.checkIn(bedroom3, group4,1);
-        System.out.println(hotel2.allRoomInfo());
-        assertEquals("Room 101 is currently occupied by 2 people - Lacey and Alex\n" +
-                "Room 102 is currently occupied by 2 people - Bill and Steve\n" +
-                "Room 103 is currently occupied by 2 people - Jenny and Sarah\n", hotel2.allRoomInfo());
+        assertEquals("Room 101 is currently occupied by 2 people for 1 night(s)\n" +
+                "Guest names: Lacey and Alex\n" +
+                "Room 102 is currently occupied by 2 people for 1 night(s)\n" +
+                "Guest names: Bill and Steve\n" +
+                "Room 103 is currently occupied by 2 people for 1 night(s)\n" +
+                "Guest names: Jenny and Sarah\n", hotel2.allRoomInfo());
     }
 
     @Test
     public void canAllInfo_Unoccupied() {
         hotel2.checkIn(bedroom1, group2,1);
         hotel2.checkIn(bedroom3, group4,1);
-        assertEquals("Room 101 is currently occupied by 2 people - Lacey and Alex\n" +
+        System.out.println(hotel2.allRoomInfo());
+        assertEquals("Room 101 is currently occupied by 2 people for 1 night(s)\n" +
+                "Guest names: Lacey and Alex\n" +
                 "Room 102 is currently unoccupied\n" +
-                "Room 103 is currently occupied by 2 people - Jenny and Sarah\n", hotel2.allRoomInfo());
+                "Room 103 is currently occupied by 2 people for 1 night(s)\n" +
+                "Guest names: Jenny and Sarah\n", hotel2.allRoomInfo());
     }
 
     @Test
