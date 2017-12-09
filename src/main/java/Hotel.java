@@ -9,12 +9,14 @@ public class Hotel {
     private ArrayList<Bedroom> bedrooms;
     private ArrayList<Room> otherRooms;
     private Double moneyMade;
+    private UI ui;
 
     public Hotel(String hotelName) {
         this.hotelName = hotelName;
         this.bedrooms = new ArrayList<Bedroom>();
         this.otherRooms = new ArrayList<Room>();
         this.moneyMade = 0.0;
+        this.ui = new UI();
     }
 
     public String getHotelName() {
@@ -83,6 +85,7 @@ public class Hotel {
         }
         String result = String.join("", guestNames);
         return result;
+
     }
 
     public String unoccupiedRooms() {

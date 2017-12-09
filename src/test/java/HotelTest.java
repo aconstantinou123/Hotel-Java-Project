@@ -167,5 +167,5 @@ public class HotelTest {
                 "Room 104 - Single\n" +
                 "Room 105 - Double\n", hotel2.unoccupiedRooms());
     }
-    
+
 }
