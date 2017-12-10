@@ -72,6 +72,8 @@ public class Runner {
                     "5. To check-in guests\n" +
                     "6. To check-out guests\n" +
                     "7. View Conference Room information\n" +
+                    "8. Book Conference Room\n" +
+                    "9. Reset Conference Room\n" +
                     "Q. Quit program\n");
             String input = scanner.nextLine().toLowerCase();
             choice = input;
@@ -101,14 +103,14 @@ public class Runner {
                     choice = input5.toLowerCase();
                     break;
                 case "5":
-                    System.out.println("Number of nights:: ");
-                    Integer numberOfNights = Integer.parseInt(scanner.nextLine());
-                    System.out.println("Choose a room: ");
-                    System.out.println(hotel.unoccupiedRooms());
-                    Integer roomNumber = Integer.parseInt(scanner.nextLine());
-                    Group guestList = new Group();
-                    System.out.println("Number of Customers: ");
-                    Integer numberOfGuests = Integer.parseInt(scanner.nextLine());
+                        System.out.println("Number of nights: ");
+                        Integer numberOfNights = Integer.parseInt(scanner.nextLine());
+                        System.out.println("Choose a room: ");
+                        System.out.println(hotel.unoccupiedRooms());
+                        Integer roomNumber = Integer.parseInt(scanner.nextLine());
+                        Group guestList = new Group();
+                        System.out.println("Number of Customers: ");
+                        Integer numberOfGuests = Integer.parseInt(scanner.nextLine());
                         for (int i = 0; i < numberOfGuests; i++) {
                             System.out.println("Guest name: ");
                             String guestName = scanner.nextLine();
@@ -116,13 +118,13 @@ public class Runner {
                             Double guestWallet = Double.parseDouble(scanner.nextLine());
                             guestList.addGuest(new Guest(guestName, guestWallet));
                         }
-                    System.out.println("Confirm details. Type 'Yes' to continue:");
+                        System.out.println("Confirm details. Type 'Yes' to continue:");
                         System.out.println("Room " + hotel.findRoom(roomNumber).getRoomNumber());
                         String answer = scanner.nextLine();
-                            if(answer.equals("Yes")){
-                                hotel.checkIn(hotel.findRoom(roomNumber), guestList, numberOfNights);
-                                System.out.println("Check In successful");
-                            }
+                        if (answer.equals("Yes")) {
+                            hotel.checkIn(hotel.findRoom(roomNumber), guestList, numberOfNights);
+                            System.out.println("Check In successful");
+                        }
                     break;
                 case "6":
                     System.out.println(hotel.allRoomInfo());
@@ -139,9 +141,47 @@ public class Runner {
                     choice = input6.toLowerCase();
                     break;
 
+                case "8":
+                    Group conferenceList = new Group();
+                    System.out.println("Conference Room Use ");
+                    String conferenceRoomUse = scanner.nextLine();
+                    System.out.println("Number of Customers: ");
+                    Integer numberOfConferenceGuests = Integer.parseInt(scanner.nextLine());
+                    for (int i = 0; i < numberOfConferenceGuests; i++) {
+                        System.out.println("Guest name: ");
+                        String guestName = scanner.nextLine();
+                        System.out.println("Guest wallet: ");
+                        Double guestWallet = Double.parseDouble(scanner.nextLine());
+                        conferenceList.addGuest(new Guest(guestName, guestWallet));
+                    }
+                    System.out.println("Confirm details. Type 'Yes' to continue:");
+                    System.out.println(conferenceList.getGuestsList().size() + " guests want to use the conference room for a "
+                    + conferenceRoomUse);
+                    String answer1 = scanner.nextLine();
+                    if(answer1.equals("Yes")){
+                        hotel.bookConferenceRoom(hotel.getConferenceRooms().get(0), conferenceList, conferenceRoomUse);
+                        System.out.println("Booking successful");
+                    }
+                    break;
+
+                case "9":
+                    System.out.println("Reset conference Room? Yes/No");
+                    String answer2 = scanner.nextLine();
+                    if(answer2.equals("Yes")){
+                        hotel.leaveConferenceRoom(hotel.getConferenceRooms().get(0));
+                    }
+                    break;
+
                 case "q":
                     System.exit(0);
                     break;
+
+                    default:
+                        System.out.println("Unrecognised Command");
+                        System.out.println("Press any key return to the main menu");
+                        String input8 = scanner.nextLine();
+                        choice = input8.toLowerCase();
+                        break;
             }
         } while (!choice.equals("q"));
     }

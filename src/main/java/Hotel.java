@@ -39,6 +39,10 @@ public class Hotel {
         this.conferenceRooms.add(conferenceRoom);
     }
 
+    public ArrayList<ConferenceRoom> getConferenceRooms() {
+        return this.conferenceRooms;
+    }
+
     public void removeBedRoom(Bedroom bedroom) {
         this.bedrooms.remove(bedroom);
     }
