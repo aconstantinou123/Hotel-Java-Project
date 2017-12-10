@@ -67,6 +67,7 @@ public class Runner {
                     "3. View Number of Guests in Hotel\n" +
                     "4. Total money paid in\n" +
                     "5. To check-in guests\n" +
+                    "6. To check-out guests\n" +
                     "Q. Quit program\n");
             String input = scanner.nextLine().toLowerCase();
             choice = input;
@@ -96,7 +97,12 @@ public class Runner {
                     choice = input5.toLowerCase();
                     break;
                 case "5":
-                    Group temporaryGuestList = new Group();
+                    System.out.println("Number of nights:: ");
+                    Integer numberOfNights = Integer.parseInt(scanner.nextLine());
+                    System.out.println("Choose a room: ");
+                    System.out.println(hotel.unoccupiedRooms());
+                    Integer roomNumber = Integer.parseInt(scanner.nextLine());
+                    Group guestList = new Group();
                     System.out.println("Number of Customers: ");
                     Integer numberOfGuests = Integer.parseInt(scanner.nextLine());
                         for (int i = 0; i < numberOfGuests; i++) {
@@ -104,43 +110,23 @@ public class Runner {
                             String guestName = scanner.nextLine();
                             System.out.println("Guest wallet: ");
                             Double guestWallet = Double.parseDouble(scanner.nextLine());
-                            temporaryGuestList.addGuest(new Guest(guestName, guestWallet));
+                            guestList.addGuest(new Guest(guestName, guestWallet));
                         }
-                    ArrayList<Bedroom> roomList = new ArrayList<>();
-                    System.out.println("Number of rooms: ");
-                    Integer numberOfRooms = Integer.parseInt(scanner.nextLine());
-                        for (int i = 0; i < numberOfRooms; i++){
-                            System.out.println(hotel.unoccupiedRooms());
-                            System.out.println("Choose Room(s): ");
-                            Integer roomNumber = Integer.parseInt(scanner.nextLine());
-                            roomList.add(hotel.findRoom(roomNumber));
-                        }
-                            String answer = "";
-                            for (int i = 0; i < roomList.size(); i++) {
-                            Group group = new Group();
-                            while (!answer.equals("next")) {
-                                System.out.println("Who will go in " + roomList.get(i).getRoomNumber() + "?");
-                                System.out.println(temporaryGuestList.getGuestsList());
-                                String searchName = scanner.nextLine();
-                                 for(Guest guest : temporaryGuestList.getGuestsList()){
-                                     if (searchName == guest.getName()){
-                                         Guest result = guest;
-                                         group.addGuest(result);
-                                         System.out.println(group.getGuestsList());
-                                     }
-                                     System.out.println(group.getGuestsList());
-                                 }
-                                System.out.println("Type continue to add another guest or next to go to the next room");
-                                answer = scanner.nextLine();
+                    System.out.println("Confirm details. Type 'Yes' to continue:");
+                        System.out.println("Room " + hotel.findRoom(roomNumber).getRoomNumber());
+                        String answer = scanner.nextLine();
+                            if(answer.equals("Yes")){
+                                hotel.checkIn(hotel.findRoom(roomNumber), guestList, numberOfNights);
+                                System.out.println("Check In successful");
                             }
-                            hotel.checkIn(roomList.get(i), group, 1);
-                            group.removeAll();
-
-
-                }
-                    temporaryGuestList.removeAll();
+                    break;
+                case "6":
                     System.out.println(hotel.allRoomInfo());
-                        break;
+                    System.out.println("Type the room number for the room you wish to check out");
+                    Integer roomNumberCheckOut = Integer.parseInt(scanner.nextLine());
+                    hotel.checkOut(hotel.findRoom(roomNumberCheckOut));
+                    System.out.println("Guests checked out from Room " + hotel.findRoom(roomNumberCheckOut).getRoomNumber());
+                    break;
 
                 case "q":
                     System.exit(0);

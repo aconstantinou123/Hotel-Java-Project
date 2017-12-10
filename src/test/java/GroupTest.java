@@ -104,7 +104,24 @@ public class GroupTest {
     public void canFindGuest() {
         group1.addGuest(guest1);
         group1.addGuest(guest2);
-        assertEquals(guest1, group1.findGuest("Alex"));
+        Guest result = group1.findGuest("Alex");
+        assertEquals("Alex", result.getName());
+    }
+
+    @Test
+    public void canFindGuest_2() {
+        group1.addGuest(guest1);
+        group1.addGuest(guest2);
+        Guest result = group1.findGuest("Tim");
+        assertEquals("Tim", result.getName());
+    }
+
+    @Test
+    public void canRemoveGuestObject() {
+        group1.addGuest(guest1);
+        group1.addGuest(guest2);
+        group1.removeGuestObject(guest1);
+        assertEquals(1, group1.getGuestsNumber());
     }
 
 }

@@ -57,7 +57,7 @@ public class Hotel {
         }
     }
 
-    public void checkOut(Bedroom bedroom, Group group) {
+    public void checkOut(Bedroom bedroom) {
         if (bedroom.getIsOccupied() == true){
             bedroom.checkOutGuests();
             bedroom.removeGuests();
@@ -134,7 +134,7 @@ public class Hotel {
             }
         }
         if (foundRoom.isEmpty()) {
-                System.out.println("Room not found!");
+            System.out.println("Room not found!");
         }
         return foundRoom.get(0);
     }

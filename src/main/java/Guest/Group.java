@@ -37,6 +37,17 @@ public class Group {
         return removedGuest.get(0);
     }
 
+    public Guest removeGuestObject(Guest guestToRemove) {
+        ArrayList<Guest> removedGuest = new ArrayList<>();
+        for(Guest guest : guests) {
+            if(guestToRemove == guest) {
+                removedGuest.add(guest);
+                guests.remove(guest);
+            }
+        }
+        return removedGuest.get(0);
+    }
+
     public void removeAll() {
         this.guests.clear();
     }
@@ -112,6 +123,13 @@ public class Group {
             System.out.println("Guest not found!");
         }
         return foundGuest.get(0);
+    }
+
+
+    public void viewGuestNames(){
+        for(Guest guest: guests) {
+            System.out.println(guest.getName());
+        }
     }
 
 }
