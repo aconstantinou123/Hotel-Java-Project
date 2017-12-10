@@ -5,6 +5,7 @@ import Rooms.Room;
 import Rooms.RoomType;
 
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Runner {
@@ -65,6 +66,7 @@ public class Runner {
                     "2. View Unoccupied Rooms\n" +
                     "3. View Number of Guests in Hotel\n" +
                     "4. Total money paid in\n" +
+                    "5. To check-in guests\n" +
                     "Q. Quit program\n");
             String input = scanner.nextLine().toLowerCase();
             choice = input;
@@ -93,11 +95,58 @@ public class Runner {
                     String input5 = scanner.nextLine();
                     choice = input5.toLowerCase();
                     break;
+                case "5":
+                    Group temporaryGuestList = new Group();
+                    System.out.println("Number of Customers: ");
+                    Integer numberOfGuests = Integer.parseInt(scanner.nextLine());
+                        for (int i = 0; i < numberOfGuests; i++) {
+                            System.out.println("Guest name: ");
+                            String guestName = scanner.nextLine();
+                            System.out.println("Guest wallet: ");
+                            Double guestWallet = Double.parseDouble(scanner.nextLine());
+                            temporaryGuestList.addGuest(new Guest(guestName, guestWallet));
+                        }
+                    ArrayList<Bedroom> roomList = new ArrayList<>();
+                    System.out.println("Number of rooms: ");
+                    Integer numberOfRooms = Integer.parseInt(scanner.nextLine());
+                        for (int i = 0; i < numberOfRooms; i++){
+                            System.out.println(hotel.unoccupiedRooms());
+                            System.out.println("Choose Room(s): ");
+                            Integer roomNumber = Integer.parseInt(scanner.nextLine());
+                            roomList.add(hotel.findRoom(roomNumber));
+                        }
+                            String answer = "";
+                            for (int i = 0; i < roomList.size(); i++) {
+                            Group group = new Group();
+                            while (!answer.equals("next")) {
+                                System.out.println("Who will go in " + roomList.get(i).getRoomNumber() + "?");
+                                System.out.println(temporaryGuestList.getGuestsList());
+                                String searchName = scanner.nextLine();
+                                 for(Guest guest : temporaryGuestList.getGuestsList()){
+                                     if (searchName == guest.getName()){
+                                         Guest result = guest;
+                                         group.addGuest(result);
+                                         System.out.println(group.getGuestsList());
+                                     }
+                                     System.out.println(group.getGuestsList());
+                                 }
+                                System.out.println("Type continue to add another guest or next to go to the next room");
+                                answer = scanner.nextLine();
+                            }
+                            hotel.checkIn(roomList.get(i), group, 1);
+                            group.removeAll();
+
+
+                }
+                    temporaryGuestList.removeAll();
+                    System.out.println(hotel.allRoomInfo());
+                        break;
+
                 case "q":
                     System.exit(0);
                     break;
             }
-        } while (choice != "q");
+        } while (!choice.equals("q"));
     }
 
 

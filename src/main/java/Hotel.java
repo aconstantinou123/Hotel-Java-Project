@@ -35,6 +35,10 @@ public class Hotel {
         this.bedrooms.add(bedroom);
     }
 
+    public void addRoom(Room room) {
+        this.otherRooms.add(room);
+    }
+
     public void removeBedRoom(Bedroom bedroom) {
         this.bedrooms.remove(bedroom);
     }
@@ -60,6 +64,29 @@ public class Hotel {
             bedroom.setNightsBooked(0);
             bedroom.setIsOccupied(false);
 
+        }
+    }
+
+    public void bookConferenceRoom(ConferenceRoom conferenceRoom, Group group, String use) {
+        if(group.enoughMoneyForConferenceRoom(conferenceRoom) == true &&
+                group.getGuestsList().size() <= conferenceRoom.getCapacity() &&
+                conferenceRoom.getIsInUse() == false){
+            conferenceRoom.addGroup(group);
+            group.deductMoneyConferenceRoom(conferenceRoom);
+            conferenceRoom.setCurrentUse(use);
+            conferenceRoom.setIsInUse(true);
+            this.moneyMade += conferenceRoom.getPrice();
+            group.removeAll();
+        }
+
+    }
+
+
+    public void leaveConferenceRoom(ConferenceRoom conferenceRoom){
+        if(conferenceRoom.getIsInUse() == true){
+            conferenceRoom.removeGuests();
+            conferenceRoom.setCurrentUse("None");
+            conferenceRoom.setIsInUse(false);
         }
     }
 

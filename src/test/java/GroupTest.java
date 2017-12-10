@@ -100,5 +100,11 @@ public class GroupTest {
         assertEquals(true, guest2.getCheckedInStatus());
     }
 
+    @Test
+    public void canFindGuest() {
+        group1.addGuest(guest1);
+        group1.addGuest(guest2);
+        assertEquals(guest1, group1.findGuest("Alex"));
+    }
 
 }
