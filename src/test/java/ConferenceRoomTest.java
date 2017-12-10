@@ -30,7 +30,7 @@ public class ConferenceRoomTest {
         group1.addGuest(guest2);
         group1.addGuest(guest3);
         group1.addGuest(guest4);
-        hotel1.addRoom(conferenceRoom1);
+        hotel1.addConferenceRoom(conferenceRoom1);
     }
 
     @Test
@@ -70,5 +70,18 @@ public class ConferenceRoomTest {
         hotel1.leaveConferenceRoom(conferenceRoom1);
         assertEquals(0, conferenceRoom1.numberOfGuestsInRoom());
         assertEquals("None", conferenceRoom1.getCurrentUse());
+    }
+
+    @Test
+    public void canSeeConferenceRoomActivity() {
+        hotel1.bookConferenceRoom(conferenceRoom1, group1, "Business Meeting");
+        assertEquals("The conference room is currently being used by 4 guests for a Business Meeting",
+                hotel1.viewConferenceRoomActivity());
+    }
+
+    @Test
+    public void canSeeConferenceRoomActivity_none() {
+        assertEquals("The conference room is currently empty",
+                hotel1.viewConferenceRoomActivity());
     }
 }

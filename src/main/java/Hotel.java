@@ -7,14 +7,14 @@ public class Hotel {
 
     private String hotelName;
     private ArrayList<Bedroom> bedrooms;
-    private ArrayList<Room> otherRooms;
+    private ArrayList<ConferenceRoom> conferenceRooms;
     private Double moneyMade;
     private UI ui;
 
     public Hotel(String hotelName) {
         this.hotelName = hotelName;
         this.bedrooms = new ArrayList<Bedroom>();
-        this.otherRooms = new ArrayList<Room>();
+        this.conferenceRooms = new ArrayList<ConferenceRoom>();
         this.moneyMade = 0.0;
         this.ui = new UI();
     }
@@ -35,8 +35,8 @@ public class Hotel {
         this.bedrooms.add(bedroom);
     }
 
-    public void addRoom(Room room) {
-        this.otherRooms.add(room);
+    public void addConferenceRoom(ConferenceRoom conferenceRoom) {
+        this.conferenceRooms.add(conferenceRoom);
     }
 
     public void removeBedRoom(Bedroom bedroom) {
@@ -137,6 +137,20 @@ public class Hotel {
             System.out.println("Room not found!");
         }
         return foundRoom.get(0);
+    }
+
+    public String viewConferenceRoomActivity() {
+        String result = new String();
+        for (ConferenceRoom conferenceRoom : conferenceRooms) {
+            if(conferenceRoom.getIsInUse() == true){
+                result = String.format("The conference room is currently being used by %s guests for a %s",
+                        conferenceRoom.getGuestsInRoom().size(), conferenceRoom.getCurrentUse());
+            }
+            else{
+                result = "The conference room is currently empty";
+            }
+        }
+        return result;
     }
 
 }

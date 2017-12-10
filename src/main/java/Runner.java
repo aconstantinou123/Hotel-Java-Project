@@ -1,6 +1,7 @@
 import Guest.Group;
 import Guest.Guest;
 import Rooms.Bedroom;
+import Rooms.ConferenceRoom;
 import Rooms.Room;
 import Rooms.RoomType;
 
@@ -24,6 +25,7 @@ public class Runner {
         Bedroom bedroom3 = new Bedroom(RoomType.PENTHOUSE, 300.0, 103, 4);
         Bedroom bedroom4 = new Bedroom(RoomType.SINGLE, 300.0, 104, 2);
         Bedroom bedroom5 = new Bedroom(RoomType.DOUBLE, 300.0, 105, 2);
+        ConferenceRoom conferenceRoom1 = new ConferenceRoom(20, 200.0, "None");
         Guest guest1 = new Guest("Lacey", 300.0);
         Guest guest2 = new Guest("Alex", 120.0);
         Guest guest3 = new Guest("Bill", 220.0);
@@ -39,6 +41,7 @@ public class Runner {
         hotel2.addBedRoom(bedroom3);
         hotel2.addBedRoom(bedroom4);
         hotel2.addBedRoom(bedroom5);
+        hotel2.addConferenceRoom(conferenceRoom1);
         group2.addGuest(guest1);
         group2.addGuest(guest2);
         group3.addGuest(guest3);
@@ -68,6 +71,7 @@ public class Runner {
                     "4. Total money paid in\n" +
                     "5. To check-in guests\n" +
                     "6. To check-out guests\n" +
+                    "7. View Conference Room information\n" +
                     "Q. Quit program\n");
             String input = scanner.nextLine().toLowerCase();
             choice = input;
@@ -126,6 +130,13 @@ public class Runner {
                     Integer roomNumberCheckOut = Integer.parseInt(scanner.nextLine());
                     hotel.checkOut(hotel.findRoom(roomNumberCheckOut));
                     System.out.println("Guests checked out from Room " + hotel.findRoom(roomNumberCheckOut).getRoomNumber());
+                    break;
+
+                case "7":
+                    System.out.println(hotel.viewConferenceRoomActivity());
+                    System.out.println("Press any key return to the main menu");
+                    String input6 = scanner.nextLine();
+                    choice = input6.toLowerCase();
                     break;
 
                 case "q":
