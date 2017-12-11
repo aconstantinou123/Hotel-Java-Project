@@ -150,7 +150,7 @@ public class Hotel {
         String result = new String();
         for (ConferenceRoom conferenceRoom : conferenceRooms) {
             if(conferenceRoom.getIsInUse() == true){
-                result = String.format("The conference room is currently being used by %s guests for a %s",
+                result = String.format("The conference room is currently being used by %s guests for a %s ",
                         conferenceRoom.getGuestsInRoom().size(), conferenceRoom.getCurrentUse());
             }
             else{
@@ -168,7 +168,7 @@ public class Hotel {
         return restaurants.size();
     }
 
-    public ArrayList getRestaurants() {
+    public ArrayList<Restaurant> getRestaurants() {
         return restaurants;
     }
 
@@ -194,4 +194,14 @@ public class Hotel {
         }
         restaurant.cancelTablesBooked(tables);
     }
+
+    public String viewRestaurant() {
+        String result = new String();
+        for (Restaurant restaurant : restaurants){
+            result = String.format("The restaurant currently has %s table(s) booked. The food being served this evening is %s",
+                    restaurant.getTablesBooked(), restaurant.getCurrentMenu());
+        }
+        return result;
+    }
+
 }

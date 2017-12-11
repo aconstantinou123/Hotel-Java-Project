@@ -101,4 +101,13 @@ public class RestaurantTest {
         assertEquals(4, restaurant1.numberOfGuestsInRoom());
         assertEquals(1, restaurant1.getTablesBooked());
     }
+
+    @Test
+    public void canViewRestaurant() {
+        hotel1.addRestaurant(restaurant1);
+        hotel1.bookRestaurant(group1, restaurant1, 1);
+        hotel1.bookRestaurant(group2, restaurant1, 1);
+        assertEquals("The restaurant currently has 2 table(s) booked. The food being served this evening is Mexican",
+                hotel1.viewRestaurant());
+    }
 }
