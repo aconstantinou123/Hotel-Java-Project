@@ -114,9 +114,7 @@ public class Runner {
                         for (int i = 0; i < numberOfGuests; i++) {
                             System.out.println("Guest name: ");
                             String guestName = scanner.nextLine();
-                            System.out.println("Guest wallet: ");
-                            Double guestWallet = Double.parseDouble(scanner.nextLine());
-                            guestList.addGuest(new Guest(guestName, guestWallet));
+                            guestList.addGuest(new Guest(guestName, 1000.0));
                         }
                         System.out.println("Confirm details. Type 'Yes' to continue:");
                         System.out.println("Room " + hotel.findRoom(roomNumber).getRoomNumber());
@@ -150,9 +148,7 @@ public class Runner {
                     for (int i = 0; i < numberOfConferenceGuests; i++) {
                         System.out.println("Guest name: ");
                         String guestName = scanner.nextLine();
-                        System.out.println("Guest wallet: ");
-                        Double guestWallet = Double.parseDouble(scanner.nextLine());
-                        conferenceList.addGuest(new Guest(guestName, guestWallet));
+                        conferenceList.addGuest(new Guest(guestName, 1000.0));
                     }
                     System.out.println("Confirm details. Type 'Yes' to continue:");
                     System.out.println(conferenceList.getGuestsList().size() + " guests want to use the conference room for a "

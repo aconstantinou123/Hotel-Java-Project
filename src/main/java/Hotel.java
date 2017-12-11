@@ -1,4 +1,5 @@
 import Guest.Group;
+import Guest.Guest;
 import Rooms.*;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ public class Hotel {
     private String hotelName;
     private ArrayList<Bedroom> bedrooms;
     private ArrayList<ConferenceRoom> conferenceRooms;
+    private ArrayList<Restaurant> restaurants;
     private Double moneyMade;
     private UI ui;
 
@@ -15,6 +17,7 @@ public class Hotel {
         this.hotelName = hotelName;
         this.bedrooms = new ArrayList<Bedroom>();
         this.conferenceRooms = new ArrayList<ConferenceRoom>();
+        this.restaurants = new ArrayList<Restaurant>();
         this.moneyMade = 0.0;
         this.ui = new UI();
     }
@@ -157,4 +160,38 @@ public class Hotel {
         return result;
     }
 
+    public void addRestaurant(Restaurant restaurant) {
+        this.restaurants.add(restaurant);
+    }
+
+    public int getNumberofRestaurants() {
+        return restaurants.size();
+    }
+
+    public ArrayList getRestaurants() {
+        return restaurants;
+    }
+
+    public void removeRestaurant(Restaurant restaurant) {
+       this.restaurants.remove(restaurant);
+
+    }
+
+    public void bookRestaurant(Group group, Restaurant restaurant, int tables) {
+        if (group.getGuestsList().size() < restaurant.getCapacity()){
+            restaurant.getGuestsInRoom().addAll(group.getGuestsList());
+            restaurant.setTablesBooked(tables);
+        }
+    }
+
+    public void cancelTable(Group group, Restaurant restaurant, int tables) { {
+        for (Guest guest : group.getGuestsList()){
+                if (restaurant.getGuestsInRoom().contains(guest)) {
+                        restaurant.getGuestsInRoom().remove(guest);
+                }
+            }
+
+        }
+        restaurant.cancelTablesBooked(tables);
+    }
 }
